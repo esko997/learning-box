@@ -9,6 +9,7 @@ game (the Fakemon card maker, hence the repo's original name) and grew into a sm
 | 🎲 **Number Race** | The classroom dice game: roll two dice, add them up, race the numbers to the top |
 | **Tic-Tac-Toe** | Get three in a row against Random or Tricky Robo, or play with two humans on the same tablet |
 | **Creature Puzzle Battle** | Swap neighboring blocks, make matches and chains, and help Bluewing outlast Starfin on two rising boards |
+| **Ribbon Flight** | Fly a blue ribbon-armed character through an endless stream of little flyers; drag to steer, shoot automatically |
 | **Fact Explorer** | A sourced talking fact book: ten discoveries, optional questions and hands-on ideas |
 | **Creature Field Guide** | Invent imaginary wildlife; keep drawings, words and recordings in a personal encyclopedia |
 | **Story Director** | Photograph a written sentence, draw or narrate the next page, and make a storybook |
@@ -97,6 +98,25 @@ Non-matching swaps stay put so players can build a match over several moves.
   Reduced-motion preferences disable decorative animations.
 
 Browser-only: no paid API calls, saved battles, or changes to the card collection.
+
+## Ribbon Flight
+
+A horizontal shooter with a blue round face and long red-and-blue ribbon arms, inspired by
+a child's drawing. Little flyers enter from the right for as long as the flight lasts.
+Spawn frequency and speed gradually increase, then stop increasing; there is no final wave.
+
+- **Start flying**, then drag anywhere in the sky to steer relative to your finger. The two
+  ribbon tips shoot automatically. Releasing the drag stops movement, not shooting.
+- Keyboard: click the sky and use arrows or WASD; P pauses/resumes.
+- Pop flyers for ten points each. Three bumps to the blue face end the flight, with a brief
+  protective shield after each hit. Ribbon arms are not vulnerable, and missed flyers cost
+  no hearts. **Fly again** resets hearts, score and difficulty.
+- **Pause**, **Hear rules**, leaving the page, losing window focus, or a cancelled touch
+  pauses the game. Resume explicitly when ready. Rotating the screen ends the current drag.
+- Reduced-motion mode removes background scrolling, ribbon wiggles, wing flaps and pop
+  particles; gameplay movement remains. Landscape gives the widest view on a tablet.
+
+Runs entirely in the browser, with no paid calls, saved scores, or card collection changes.
 
 ## Play notebooks
 

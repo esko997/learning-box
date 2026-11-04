@@ -10,6 +10,7 @@ For the short version, see the [README](../README.md).
 | `/number-race.html` | Number Race; runs entirely in the browser, no server data |
 | `/tic-tac-toe.html` | Tic-Tac-Toe against Random or Tricky Robo, or two humans on the same tablet; browser-only, no paid calls or saved game data |
 | `/puzzle-battle.html` | Creature Puzzle Battle: two rising match-three boards, chains and a computer rival; browser-only, no paid calls or saved battles |
+| `/ribbon-flight.html` | Endless horizontal shooter with touch steering and automatic shots; browser-only, no paid calls or saved game data |
 | `/facts.html` | Sourced facts, ten-discovery sessions, optional follow-ups and reflection |
 | `/creatures.html` | Original drawings and descriptions in a creature field guide |
 | `/stories.html` | Photographed writing, narration, sound effects and printable stories |

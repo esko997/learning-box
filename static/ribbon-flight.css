@@ -1,0 +1,44 @@
+html, body { height: auto; min-height: 100%; }
+body { min-height: 100vh; }
+.bar { gap: 0.5rem; flex-wrap: wrap; }
+.bar a { text-decoration: none; }
+.bar .mid { font-size: 1rem; }
+button, a { min-height: 44px; touch-action: manipulation; }
+:focus-visible { outline: 3px solid #ffe58a; outline-offset: 4px; }
+.flight-game { width: min(1100px, calc(100% - 24px)); margin: 0 auto; padding: 16px 0 24px; flex: 1 0 auto; }
+.logo { font-size: clamp(2rem, 6vw, 3.3rem); }
+.instructions { text-align: center; max-width: 48rem; margin: 12px auto; line-height: 1.5; }
+.flight-toolbar { display: flex; justify-content: space-between; align-items: center; gap: 12px; flex-wrap: wrap; margin: 12px 0; }
+.flight-stats, .flight-actions { display: flex; align-items: center; gap: 16px; }
+.flight-stats { font-size: 1.15rem; font-weight: 800; }
+#hearts { color: #ffb9bb; white-space: nowrap; letter-spacing: 0.15em; }
+.flight-actions .mid { font-size: 1rem; min-height: 46px; }
+.sky-wrap { position: relative; border: 3px solid #a6dafa; border-radius: 18px; overflow: hidden; background: #fff9ed; box-shadow: 0 6px 0 #0004; }
+#sky { display: block; width: 100%; aspect-ratio: 16 / 9; touch-action: none; cursor: grab; }
+#sky:active { cursor: grabbing; }
+#sky:focus-visible { outline-offset: -5px; }
+.flight-overlay { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 10px; text-align: center; color: #203a68; background: #fff9edb8; pointer-events: none; padding: 12px; }
+.flight-overlay strong { font-size: clamp(1.3rem, 5vw, 3rem); }
+.flight-overlay span { font-size: clamp(0.9rem, 2.5vw, 1.2rem); max-width: 28rem; }
+#flight-status { min-height: 1.5em; text-align: center; font-weight: 800; line-height: 1.5; }
+.help { max-width: 55rem; margin: 12px auto 0; text-align: center; color: #e0eaff; font-size: 0.9rem; line-height: 1.6; }
+@media (max-width: 520px) {
+  .flight-game { width: calc(100% - 16px); padding-top: 10px; }
+  .flight-toolbar { justify-content: center; gap: 8px; }
+  .flight-stats { width: 100%; justify-content: space-between; }
+  .instructions { font-size: 0.9rem; }
+  .flight-actions { gap: 10px; }
+}
+@media (orientation: landscape) and (min-height: 601px) {
+  .flight-game { width: min(1100px, calc(100% - 24px), calc((100svh - 280px) * 16 / 9)); }
+}
+@media (orientation: landscape) and (max-height: 600px) {
+  .flight-game { padding-top: 4px; max-width: calc((100svh - 156px) * 16 / 9); min-width: min(100%, 300px); }
+  .logo { font-size: 1.7rem; }
+  .instructions { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); }
+  .flight-toolbar { margin: 8px 0; flex-wrap: nowrap; }
+  .flight-stats { width: auto; font-size: 0.95rem; }
+  .flight-actions .mid { padding: 0.5rem 0.65rem; }
+  #flight-status { margin: 8px 0; font-size: 0.85rem; }
+}
+@media (prefers-reduced-motion: reduce) { button { transition: none; } }

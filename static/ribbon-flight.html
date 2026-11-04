@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#3b4cca">
+  <title>Ribbon Flight</title>
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="icon" href="icon.svg">
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="ribbon-flight.css">
+</head>
+<body>
+  <header class="bar">
+    <a class="mid" href="./">All games</a>
+    <span id="env-badge" class="env-badge" hidden></span>
+    <button class="mid" id="rules-btn" type="button">Hear rules</button>
+  </header>
+  <main class="flight-game">
+    <h1 class="logo">Ribbon Flight</h1>
+    <p class="instructions" id="instructions">Drag anywhere in the sky to fly. Your ribbon tips shoot automatically!
+      Dodge the little flyers and protect your blue face.</p>
+    <div class="flight-toolbar">
+      <div class="flight-stats"><span id="hearts" aria-label="3 hearts left">♥ ♥ ♥</span><span>Score <strong id="score">0</strong></span></div>
+      <div class="flight-actions">
+        <button class="mid primary" id="start" type="button">Start flying</button>
+        <button class="mid" id="pause" type="button" disabled>Pause</button>
+      </div>
+    </div>
+    <div class="sky-wrap">
+      <canvas id="sky" width="960" height="540" tabindex="0" role="img" aria-label="Ribbon Flight playfield" aria-describedby="instructions keyboard-help">Ribbon Flight needs a browser with canvas support.</canvas>
+      <div id="overlay" class="flight-overlay"><strong id="overlay-title">Ready to fly?</strong><span id="overlay-detail">An endless sky of little flyers awaits.</span></div>
+    </div>
+    <p id="flight-status" role="status" aria-live="polite" aria-atomic="true">Tap Start flying when you are ready.</p>
+    <p class="help" id="keyboard-help">Keyboard: click the sky, then use arrows or WASD. P pauses.
+      You have three hearts. The ribbon arms are safe to touch; only the blue face can be bumped.
+      Flyers that get past you do not cost a heart. Turn your tablet sideways for a bigger sky.</p>
+    <noscript><p>This game needs JavaScript enabled.</p></noscript>
+  </main>
+  <script type="module" src="ribbon-flight.js"></script>
+</body>
+</html>
