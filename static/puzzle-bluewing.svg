@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="240" height="260" viewBox="0 0 240 260" role="img" aria-labelledby="title description">
+  <title id="title">Bluewing</title>
+  <desc id="description">An original chunky blue puzzle creature with wide navy-tipped wings, a blocky purple crown, bright orange square eyes, blue legs, and a curled tail.</desc>
+  <ellipse cx="122" cy="240" rx="78" ry="11" fill="#071a35" opacity=".3"/>
+  <g stroke="#152c58" stroke-width="5" stroke-linejoin="round" stroke-linecap="round">
+    <path d="M151 181 Q196 213 215 180 L222 160 L230 181 Q235 224 194 228 L156 215Z" fill="#388ce4"/>
+    <path d="M82 110 L57 74 L12 49 L23 102 L14 123 L47 121 L49 146 L85 139Z" fill="#459eea"/>
+    <path d="M57 74 L12 49 L23 102 L36 84 L48 112Z" fill="#233a76"/>
+    <path d="M155 110 L183 75 L226 50 L217 104 L229 125 L193 121 L191 149 L155 140Z" fill="#459eea"/>
+    <path d="M183 75 L226 50 L217 104 L203 85 L192 113Z" fill="#233a76"/>
+    <path d="M80 188 L75 222 L62 227 L62 239 L103 239 L108 202Z" fill="#3281d2"/>
+    <path d="M132 201 L139 238 L180 238 L180 227 L164 221 L161 188Z" fill="#3281d2"/>
+    <path d="M75 112 Q60 130 64 170 L71 199 Q90 216 119 215 Q149 216 168 198 L175 168 Q180 131 162 112Z" fill="#449ce9"/>
+    <path d="M91 146 Q119 132 147 146 L151 185 Q123 203 89 187Z" fill="#79c8f4" stroke="#2c78be" stroke-width="4"/>
+    <path d="M78 139 L58 153 L61 175 L77 178 L84 156" fill="#3b91e0"/>
+    <path d="M160 138 L180 153 L177 175 L162 178 L155 156" fill="#3b91e0"/>
+    <path d="M76 62 L76 39 L94 39 L94 52 L108 52 L108 28 L128 28 L128 51 L144 51 L144 38 L163 38 L163 65 L173 65 L173 113 Q147 132 119 129 Q89 131 65 111 L65 64Z" fill="#8b66cf"/>
+    <path d="M78 66 L159 66" fill="none" stroke="#b297ec" stroke-width="4"/>
+    <rect x="80" y="79" width="26" height="25" rx="2" fill="#ffad46" stroke-width="4"/>
+    <rect x="132" y="79" width="26" height="25" rx="2" fill="#ffad46" stroke-width="4"/>
+    <path d="M109 114 Q119 121 130 113" fill="none" stroke-width="4"/>
+  </g>
+  <path d="M94 86 H101 V98 H94Z M136 86 H143 V98 H136Z" fill="#192c54"/>
+  <path d="M84 83 H90 V89 H84Z M147 83 H153 V89 H147Z" fill="#ffe3a3"/>
+  <path d="M109 157 L119 148 L130 157 L119 168Z" fill="#c2eeff"/>
+  <path d="M72 232 H80 M88 232 H96 M147 231 H155 M163 231 H171" stroke="#80c8f3" stroke-width="3" stroke-linecap="round"/>
+</svg>

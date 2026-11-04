@@ -1,0 +1,263 @@
+.puzzle-battle {
+  height: auto;
+  min-height: 100%;
+  background:
+    radial-gradient(ellipse at 12% 35%, #5389ca55, transparent 45%),
+    radial-gradient(ellipse at 90% 65%, #399eaa44, transparent 40%),
+    linear-gradient(160deg, #3548a3, #192654 80%);
+}
+.puzzle-battle .bar { gap: 0.6rem; flex-wrap: wrap; }
+.puzzle-battle .bar a { text-decoration: none; }
+.puzzle-battle .bar .mid { font-size: 1rem; min-height: 44px; }
+.puzzle-battle button, .puzzle-battle a { touch-action: manipulation; }
+.puzzle-battle :focus-visible { outline: 3px solid #fff3a0; outline-offset: 4px; }
+.battle-game {
+  width: min(1240px, calc(100% - 24px));
+  margin: 0 auto;
+  padding: 12px 0 max(24px, env(safe-area-inset-bottom));
+  flex: 1 0 auto;
+}
+.battle-intro { text-align: center; }
+.eyebrow {
+  margin: 0 0 10px;
+  color: #bcece9;
+  font-size: 0.76rem;
+  font-weight: 800;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+.battle-intro .logo { font-size: clamp(2rem, 5vw, 3.4rem); line-height: 1.1; }
+#instructions {
+  max-width: 760px;
+  margin: 14px auto;
+  font-size: 1rem;
+  line-height: 1.5;
+  color: #e5eeff;
+}
+#instructions strong { color: #fff3a0; }
+.battle-actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+  position: sticky;
+  top: 8px;
+  z-index: 5;
+  width: fit-content;
+  margin: 0 auto;
+  padding: 6px;
+  border-radius: 18px;
+  background: #192654;
+}
+.battle-actions .mid { min-height: 48px; font-size: 1.05rem; border-radius: 14px; }
+.battle-actions button:disabled { cursor: default; }
+.battle-announcement { margin: 17px auto 12px; text-align: center; }
+#battle-status { margin: 0; font-size: 1.12rem; font-weight: 800; line-height: 1.4; }
+#result { max-width: 680px; margin: 6px auto 0; color: #fff3a0; line-height: 1.5; }
+#result:empty { display: none; }
+.arena-hint { display: none; }
+.arena-scroll {
+  overflow-x: auto;
+  border: 1px solid #a8c9ff38;
+  border-radius: 24px;
+  background: #07142a42;
+  scrollbar-color: #8db6df #172449;
+  scrollbar-width: thin;
+}
+#arena {
+  --cell: clamp(44px, 4.4vw, 54px);
+  --tile-gap: 3px;
+  display: grid;
+  grid-template-columns: minmax(100px, 1fr) max-content max-content minmax(100px, 1fr);
+  grid-template-areas: "bluewing player rival starfin";
+  gap: 16px;
+  align-items: center;
+  padding: 20px 14px;
+  width: 100%;
+  min-width: max-content;
+}
+.player-creature { grid-area: bluewing; }
+.rival-creature { grid-area: starfin; }
+.player-well { grid-area: player; --well-accent: #84bbff; }
+.rival-well { grid-area: rival; --well-accent: #77e0c9; }
+.creature { min-width: 0; margin: 0; text-align: center; }
+.creature img {
+  display: block;
+  width: 100%;
+  max-width: 230px;
+  height: auto;
+  margin: 0 auto;
+  filter: drop-shadow(0 10px 8px #040d224d);
+  transform-origin: 50% 85%;
+}
+.creature figcaption { margin-top: 12px; line-height: 1.4; }
+.creature figcaption strong { display: block; font-size: 1.25rem; color: #e3f4ff; }
+.creature figcaption span { display: block; font-size: 0.85rem; color: #b5c8ea; }
+.creature.celebrate img { animation: puzzle-cheer 1.2s ease-in-out infinite; }
+.creature.worried img { animation: puzzle-worry 1.6s ease-in-out infinite; }
+.well {
+  align-self: start;
+  width: max-content;
+  padding: 0 8px 10px;
+  border: 2px solid var(--well-accent);
+  border-radius: 18px;
+  background: linear-gradient(#253d6c, #17284e);
+  box-shadow: 0 6px 0 #09163288, inset 0 1px 0 #fff2;
+  transition: border-color 180ms;
+}
+.well-heading { display: flex; justify-content: space-between; align-items: center; gap: 8px; min-height: 54px; }
+.well-heading h2 { font-size: 1.45rem; color: var(--well-accent); text-align: left; }
+.score { margin: 0; font-size: 0.8rem; color: #c8d8ed; text-align: right; }
+.score strong { display: block; color: #fff; font-size: 1.05rem; font-variant-numeric: tabular-nums; }
+.board-message {
+  width: calc(6 * var(--cell) + 5 * var(--tile-gap));
+  min-height: 2.5em;
+  margin: 0;
+  color: #e2edff;
+  font-size: 0.85rem;
+  line-height: 1.25;
+  overflow-wrap: break-word;
+}
+.danger-message {
+  width: calc(6 * var(--cell) + 5 * var(--tile-gap));
+  min-height: 1.4em;
+  margin: 0 0 5px;
+  color: #ffd4b4;
+  font-size: 0.8rem;
+  font-weight: 800;
+  line-height: 1.4;
+}
+.battle-board, .next-row {
+  display: grid;
+  grid-template-columns: repeat(6, var(--cell));
+  gap: var(--tile-gap);
+  width: calc(6 * var(--cell) + 5 * var(--tile-gap));
+}
+.battle-board {
+  position: relative;
+  grid-template-rows: repeat(10, var(--cell));
+  border-radius: 6px;
+  background: #091a34;
+  outline: 2px solid #071226;
+}
+.battle-board::before {
+  content: "";
+  position: absolute;
+  z-index: 2;
+  top: -3px;
+  left: 0;
+  right: 0;
+  border-top: 3px dashed #c6ddf06b;
+  pointer-events: none;
+}
+.well.danger { border-color: #ffbc83; background: linear-gradient(#5c3749, #252747); }
+.well.danger .battle-board::before { border-color: #ffbb80; }
+.battle-board .tile, .next-row .tile {
+  display: grid;
+  place-items: center;
+  width: var(--cell);
+  height: var(--cell);
+  min-width: 0;
+  padding: 0;
+  border: 2px solid #ffffff70;
+  border-radius: 7px;
+  background: var(--tile-color, #102744);
+  color: #12203a;
+  box-shadow: inset 0 3px 0 #ffffff60, inset 0 -4px 0 #0002;
+  font-family: "Segoe UI Symbol", "DejaVu Sans", sans-serif;
+  font-size: calc(var(--cell) * 0.57);
+  font-weight: 800;
+  line-height: 1;
+  text-shadow: 0 1px 0 #ffffff4d;
+  cursor: default;
+}
+#player-board .tile { cursor: pointer; touch-action: manipulation; }
+#player-board .tile:disabled { opacity: 1; cursor: default; }
+#player-board .tile:active { transform: none; }
+.tile[data-kind="0"] { --tile-color: #78bfff; }
+.tile[data-kind="1"] { --tile-color: #ffb378; }
+.tile[data-kind="2"] { --tile-color: #ffe078; }
+.tile[data-kind="3"] { --tile-color: #82e1ad; }
+.tile[data-kind="4"] { --tile-color: #c9a0fa; }
+.battle-board .tile[data-kind="empty"], .next-row .tile[data-kind="empty"] {
+  background: #102744;
+  border-color: #193453;
+  box-shadow: none;
+}
+.battle-board .tile.selected {
+  z-index: 3;
+  outline: 3px solid #fff9c4;
+  outline-offset: -2px;
+  box-shadow: inset 0 0 0 3px #15243d, 0 0 0 2px #15243d;
+}
+.battle-board .tile.clearing { animation: puzzle-clear 350ms ease-out both; }
+.next-label { display: flex; justify-content: space-between; align-items: center; margin: 8px 1px 5px; color: #c4d7ef; font-size: 0.75rem; font-weight: 800; }
+.next-row { grid-template-rows: calc(var(--cell) * 0.65); }
+.next-row .tile { height: calc(var(--cell) * 0.65); font-size: calc(var(--cell) * 0.4); border-radius: 5px; }
+.battle-tip, .keyboard-help { max-width: 760px; margin: 16px auto 0; text-align: center; line-height: 1.5; color: #d3e3f7; }
+.battle-tip { font-size: 0.95rem; }
+.battle-tip strong { color: #fff3a0; }
+.keyboard-help { font-size: 0.8rem; color: #bacbe6; }
+.keyboard-help kbd { font: inherit; font-weight: 800; color: #fff; }
+@keyframes puzzle-cheer {
+  0%, 100% { transform: translateY(0) rotate(-2deg); }
+  50% { transform: translateY(-7px) rotate(2deg); }
+}
+@keyframes puzzle-worry {
+  0%, 100% { transform: rotate(-2deg); }
+  50% { transform: rotate(2deg); }
+}
+@keyframes puzzle-clear {
+  0% { filter: brightness(1); }
+  45% { filter: brightness(1.5); transform: scale(0.92); }
+  100% { filter: brightness(1.15); transform: scale(0.96); }
+}
+@media (max-width: 1100px) {
+  #arena {
+    --cell: clamp(44px, 6vw, 54px);
+    grid-template-columns: max-content max-content;
+    grid-template-areas: "bluewing starfin" "player rival";
+    justify-content: center;
+    gap: 12px 20px;
+    padding: 14px;
+  }
+  .creature { display: flex; align-items: center; justify-content: center; gap: 12px; }
+  .creature img { width: 72px; height: 78px; margin: 0; }
+  .creature figcaption { text-align: left; margin: 0; }
+  .creature figcaption strong { font-size: 1.05rem; }
+  .creature figcaption span { font-size: 0.75rem; }
+}
+@media (max-width: 680px) {
+  .battle-game { width: calc(100% - 16px); padding-top: 8px; }
+  .battle-intro .logo { max-width: 440px; margin: 0 auto; }
+  #instructions { font-size: 0.9rem; margin: 12px auto; padding: 0 8px; }
+  .battle-actions { gap: 8px; }
+  .battle-actions .mid { padding: 0.7rem 0.85rem; font-size: 0.95rem; }
+  .battle-announcement { padding: 0 8px; }
+  #battle-status { font-size: 1rem; }
+  .arena-hint { display: block; margin: 0 10px 9px; color: #d4e4f8; text-align: center; font-size: 0.8rem; line-height: 1.4; }
+  .arena-scroll { border-radius: 16px; }
+  #arena { --cell: 40px; --tile-gap: 2px; padding: 12px 8px; gap: 10px 12px; }
+  .rival-well { --cell: 24px; }
+  .well { padding: 0 5px 8px; border-radius: 12px; }
+  .well-heading h2 { font-size: 1.2rem; }
+  .board-message { font-size: 0.78rem; }
+  .danger-message { font-size: 0.75rem; }
+  .rival-well .tile { border-width: 1px; border-radius: 4px; box-shadow: inset 0 2px 0 #ffffff60, inset 0 -2px 0 #0002; }
+  .creature { gap: 6px; }
+  .creature img { width: 54px; height: 59px; }
+  .creature figcaption strong { font-size: 0.95rem; }
+  .creature figcaption span { font-size: 0.68rem; }
+  .rival-creature figcaption { max-width: 86px; }
+  .battle-tip, .keyboard-help { padding: 0 10px; }
+}
+@media (max-height: 950px) and (min-width: 681px) {
+  .eyebrow { display: none; }
+  .battle-intro .logo { font-size: 2rem; }
+  #instructions { margin: 8px auto; font-size: 0.85rem; }
+  #arena { --cell: 44px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .puzzle-battle *, .puzzle-battle *::before, .puzzle-battle *::after { animation: none !important; transition: none !important; }
+  .battle-board .tile.clearing { outline: 3px solid #fff; outline-offset: -4px; }
+}

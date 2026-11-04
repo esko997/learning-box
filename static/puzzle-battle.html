@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#3b4cca">
+  <title>Creature Puzzle Battle</title>
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="icon" href="icon.svg">
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="puzzle-battle.css">
+</head>
+<body class="puzzle-battle">
+  <header class="bar">
+    <a class="mid" href="./">All games</a>
+    <span id="env-badge" class="env-badge" hidden></span>
+    <button class="mid" id="rules-btn" type="button" aria-label="Hear how to play">Hear rules</button>
+  </header>
+  <main class="battle-game">
+    <div class="battle-intro">
+      <p class="eyebrow">A friendly showdown</p>
+      <h1 class="logo">Creature Puzzle Battle</h1>
+      <p id="instructions">Tap two neighboring blocks in the <strong>same row</strong> to swap.
+        Match <strong>3 or more</strong> across or down! The stack rises: don’t let it stay at the top.
+        Big matches and chains send an extra row to your opponent.</p>
+    </div>
+    <div class="battle-actions" role="group" aria-label="Battle controls">
+      <button class="mid primary" id="start" type="button">Start battle</button>
+      <button class="mid" id="pause" type="button" disabled>Pause</button>
+      <button class="mid" id="raise" type="button" disabled>Raise row</button>
+    </div>
+    <div class="battle-announcement">
+      <p id="battle-status" role="status" aria-live="polite" aria-atomic="true">Ready to help Bluewing? Start a battle!</p>
+      <p id="result"></p>
+    </div>
+    <p class="arena-hint" id="arena-hint">Both boards are side by side. Slide the arena sideways or rotate your screen for more room.</p>
+    <div class="arena-scroll" role="region" aria-label="Two-board battle arena" aria-describedby="arena-hint" tabindex="0">
+      <div id="arena">
+        <figure class="creature player-creature">
+          <img src="puzzle-bluewing.svg" width="240" height="260" alt="Bluewing, a chunky blue creature with pointed navy wings, a purple crown, and orange square eyes.">
+          <figcaption><strong>Bluewing</strong><span>Your puzzle pal</span></figcaption>
+        </figure>
+        <section class="well player-well" aria-labelledby="player-heading">
+          <div class="well-heading">
+            <h2 id="player-heading">You</h2>
+            <p class="score">Score <strong id="player-score">0</strong></p>
+          </div>
+          <p class="board-message" id="player-message">Let’s match!</p>
+          <p class="danger-message" id="player-danger"></p>
+          <div id="player-board" class="battle-board" tabindex="0" role="group" aria-label="Your puzzle board, six columns and ten rows" aria-describedby="instructions keyboard-help"></div>
+          <div class="next-label"><span>Next row</span><span aria-hidden="true">↑</span></div>
+          <div id="player-next" class="next-row" role="img" aria-label="Your next row of blocks"></div>
+        </section>
+        <section class="well rival-well" aria-labelledby="rival-heading">
+          <div class="well-heading">
+            <h2 id="rival-heading">Starfin</h2>
+            <p class="score">Score <strong id="rival-score">0</strong></p>
+          </div>
+          <p class="board-message" id="rival-message">Computer opponent</p>
+          <p class="danger-message" id="rival-danger"></p>
+          <div id="rival-board" class="battle-board" role="img" aria-label="Starfin’s computer puzzle board, six columns and ten rows"></div>
+          <div class="next-label"><span>Next row</span><span aria-hidden="true">↑</span></div>
+          <div id="rival-next" class="next-row" role="img" aria-label="Starfin’s next row of blocks"></div>
+        </section>
+        <figure class="creature rival-creature">
+          <img src="puzzle-starfin.svg" width="240" height="260" alt="Starfin, a friendly teal four-pointed fin creature with two dark rectangular eyes.">
+          <figcaption><strong>Starfin</strong><span>A friendly rival</span></figcaption>
+        </figure>
+      </div>
+    </div>
+    <p class="battle-tip"><strong>Make a chain!</strong> When falling blocks make another match, your puzzle power grows.</p>
+    <p class="keyboard-help" id="keyboard-help">Keyboard: focus your board, then use arrow keys to move the pair.
+      <kbd>Space</kbd> / <kbd>Enter</kbd> swaps · <kbd>R</kbd> raises · <kbd>P</kbd> pauses.</p>
+    <noscript><p class="battle-tip">This puzzle needs JavaScript. Turn it on in your browser to play.</p></noscript>
+  </main>
+  <script type="module" src="puzzle-battle.js"></script>
+</body>
+</html>

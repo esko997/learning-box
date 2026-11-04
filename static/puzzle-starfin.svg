@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="240" height="260" viewBox="0 0 240 260" role="img" aria-labelledby="title description">
+  <title id="title">Starfin</title>
+  <desc id="description">An original friendly teal creature with four broad pointed star fins, a softly rounded middle, and two dark rectangular eyes.</desc>
+  <ellipse cx="120" cy="240" rx="68" ry="10" fill="#071a35" opacity=".3"/>
+  <g stroke="#165364" stroke-width="5" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M119 25 Q133 32 148 78 Q155 90 170 96 L221 118 Q228 123 218 130 L171 151 Q155 158 149 174 L127 224 Q122 235 116 224 L93 177 Q85 159 70 154 L21 133 Q10 127 20 120 L65 99 Q83 93 90 77 L109 32 Q112 24 119 25Z" fill="#43c3b6"/>
+    <path d="M115 34 L108 87 Q119 78 135 87Z" fill="#84e5cb" stroke="none"/>
+    <path d="M212 123 L161 117 Q169 129 160 142Z" fill="#239e9d" stroke="none"/>
+    <path d="M122 219 L132 167 Q120 176 105 165Z" fill="#239e9d" stroke="none"/>
+    <path d="M28 126 L78 117 Q68 130 79 143Z" fill="#84e5cb" stroke="none"/>
+    <path d="M89 95 Q119 80 149 96 Q169 122 151 153 Q121 173 90 155 Q72 128 89 95Z" fill="#62d5c3" stroke="#38b3aa" stroke-width="3"/>
+    <rect x="91" y="111" width="15" height="27" rx="2" fill="#173f50" stroke="none"/>
+    <rect x="135" y="111" width="15" height="27" rx="2" fill="#173f50" stroke="none"/>
+    <path d="M113 146 Q120 152 128 146" fill="none" stroke="#235567" stroke-width="3"/>
+  </g>
+  <path d="M95 115 H101 V121 H95Z M139 115 H145 V121 H139Z" fill="#d6fff0"/>
+  <ellipse cx="87" cy="141" rx="7" ry="4" fill="#abedcf"/>
+  <ellipse cx="155" cy="141" rx="7" ry="4" fill="#abedcf"/>
+  <path d="M114 95 L120 89 L126 95 L120 101Z" fill="#b2f5da"/>
+</svg>

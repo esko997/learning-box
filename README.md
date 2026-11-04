@@ -8,6 +8,7 @@ game (the Fakemon card maker, hence the repo's original name) and grew into a sm
 | 🃏 **Fakemon Cards** | Draw a monster, describe it out loud, get a real-looking trading card back |
 | 🎲 **Number Race** | The classroom dice game: roll two dice, add them up, race the numbers to the top |
 | **Tic-Tac-Toe** | Get three in a row against Random or Tricky Robo, or play with two humans on the same tablet |
+| **Creature Puzzle Battle** | Swap neighboring blocks, make matches and chains, and help Bluewing outlast Starfin on two rising boards |
 | **Fact Explorer** | A sourced talking fact book: ten discoveries, optional questions and hands-on ideas |
 | **Creature Field Guide** | Invent imaginary wildlife; keep drawings, words and recordings in a personal encyclopedia |
 | **Story Director** | Photograph a written sentence, draw or narrate the next page, and make a storybook |
@@ -75,6 +76,27 @@ Winning lines are highlighted and draws are announced. **Start again** also work
 including while Robo is choosing; old pending moves are cancelled.
 Large buttons support touch and keyboard play; **Hear rules** reads the instructions aloud.
 The game runs in the browser with no paid AI calls or saved game data.
+
+## Creature Puzzle Battle
+
+A rising-stack match-three battle inspired by panel-swapping puzzle games, with original
+Bluewing and Starfin creature art. Tap two neighboring blocks in the **same row** to swap
+them; matching three or more across or down clears them, and blocks above fall into place.
+Non-matching swaps stay put so players can build a match over several moves.
+
+- Both boards gain a row every 12 seconds of idle board time. **Raise row** adds one sooner.
+- Matches of four or more and falling-block chains send an extra row to the other board,
+  with a short delivery delay and at most three rows waiting.
+- Starfin makes real swaps, usually spotting an immediate match but sometimes guessing.
+- A stack at the top has five seconds to recover. One overflowing board loses; simultaneous
+  overflow is a draw. **Play again** starts a fresh battle.
+- **Pause** freezes both boards. Hearing the rules or leaving the page also pauses play.
+- Keyboard: focus your board, move the pair with arrows, swap with Space/Enter, raise with
+  R, and pause/resume with P. Symbols distinguish blocks as well as colors.
+- Tablet boards sit side by side; narrow phones can slide the arena sideways or rotate.
+  Reduced-motion preferences disable decorative animations.
+
+Browser-only: no paid API calls, saved battles, or changes to the card collection.
 
 ## Play notebooks
 
