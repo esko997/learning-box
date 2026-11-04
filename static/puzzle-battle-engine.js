@@ -61,8 +61,12 @@ function applyGravity(cells) {
 }
 
 export class PuzzleBattle {
-  constructor(random = Math.random) {
+  constructor(random = Math.random, options = {}) {
     this.random = random;
+    this.riseMs = options.riseMs ?? RISE_MS;
+    this.computerMs = options.computerMs ?? COMPUTER_MS;
+    this.computerMatchChoices = options.computerMatchChoices ?? 3;
+    this.rivalName = options.rivalName ?? "Starfin";
     this._reset("ready");
   }
 
@@ -266,7 +270,7 @@ export class PuzzleBattle {
     }
     if (!choices.length) return;
     // One-ply match spotting, with deliberate guesses rather than perfect search.
-    const candidates = matching.length && this._randomIndex(4) < 3 ? matching : choices;
+    const candidates = matching.length && this._randomIndex(4) < this.computerMatchChoices ? matching : choices;
     this._swap(board, candidates[this._randomIndex(candidates.length)]);
   }
 
@@ -286,14 +290,14 @@ export class PuzzleBattle {
         if (board.phase !== "idle") {
           step = Math.min(step, Math.max(0, clock.phaseMs));
         } else if (!atTop) {
-          step = Math.min(step, Math.max(0, RISE_MS - board.riseMs));
+          step = Math.min(step, Math.max(0, this.riseMs - board.riseMs));
           if (board.pendingRows > 0) {
             step = Math.min(step, Math.max(0, PRESSURE_MS - clock.pressureMs));
           }
         }
       }
       if (this.state.rival.phase === "idle") {
-        step = Math.min(step, Math.max(0, COMPUTER_MS - this._computerMs));
+        step = Math.min(step, Math.max(0, this.computerMs - this._computerMs));
       }
 
       this.state.elapsed += step;
@@ -304,7 +308,7 @@ export class PuzzleBattle {
         if (board.phase !== "idle") {
           clock.phaseMs -= step;
         } else {
-          board.riseMs = Math.min(RISE_MS, board.riseMs + step);
+          board.riseMs = Math.min(this.riseMs, board.riseMs + step);
           if (board.pendingRows > 0) clock.pressureMs = Math.min(PRESSURE_MS, clock.pressureMs + step);
           if (board === this.state.rival) this._computerMs += step;
         }
@@ -317,13 +321,13 @@ export class PuzzleBattle {
           this._finishPhase(board);
         }
       }
-      if (this.state.rival.phase === "idle" && this._computerMs >= COMPUTER_MS) {
+      if (this.state.rival.phase === "idle" && this._computerMs >= this.computerMs) {
         this._computerMs = 0;
         this._computerSwap();
       }
       for (const board of boards) {
         const clock = this._clocks.get(board);
-        if (board.phase === "idle" && board.riseMs >= RISE_MS && !hasTopTiles(board)) {
+        if (board.phase === "idle" && board.riseMs >= this.riseMs && !hasTopTiles(board)) {
           board.riseMs = 0;
           this._raiseRow(board);
         }
@@ -340,7 +344,7 @@ export class PuzzleBattle {
       if (playerLost || rivalLost) {
         this.state.status = playerLost && rivalLost ? "draw" : playerLost ? "lost" : "won";
         if (playerLost) this.state.player.message = "Your stack reached the top.";
-        if (rivalLost) this.state.rival.message = "Starfin's stack reached the top.";
+        if (rivalLost) this.state.rival.message = `${this.rivalName}'s stack reached the top.`;
       }
     }
   }

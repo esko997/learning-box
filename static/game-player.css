@@ -1,0 +1,86 @@
+* { box-sizing: border-box; }
+[hidden] { display: none !important; }
+body { margin: 0; min-height: 100vh; color: #f3f7ff; background: linear-gradient(150deg, #31578c, #17294b); font-family: system-ui, sans-serif; }
+body[data-theme="space"] { background: linear-gradient(150deg, #35285f, #10152f); }
+body[data-theme="forest"] { background: linear-gradient(150deg, #275d50, #142e32); }
+button, select, a, summary { min-height: 44px; font: inherit; touch-action: manipulation; }
+button, select, .topbar a { border: 2px solid #bdd9f4; border-radius: 12px; padding: 10px 16px; color: #142d4c; background: #e2effc; font-weight: 700; }
+button, summary { cursor: pointer; }
+button:disabled { cursor: default; opacity: .55; }
+button.primary { background: #ffe38a; border-color: #fff1b8; }
+:focus-visible { outline: 3px solid #ffdb62; outline-offset: 3px; }
+.topbar { display: flex; gap: 12px; align-items: center; padding: 12px; }
+.topbar a { display: inline-flex; align-items: center; text-decoration: none; }
+.env-badge { padding: 6px 10px; border-radius: 8px; background: #ffda75; color: #192340; font-weight: 800; }
+main { width: min(1100px, calc(100% - 24px)); margin: 0 auto; padding-bottom: max(24px, env(safe-area-inset-bottom)); }
+h1 { text-align: center; font-size: clamp(1.6rem, 5vw, 2.8rem); margin: 10px 0; overflow-wrap: anywhere; }
+h2 { font-size: 1.2rem; }
+p { line-height: 1.5; }
+#instructions, #status, #result, #loading { text-align: center; }
+#status { font-weight: 750; min-height: 1.5em; }
+#result { color: #ffe7a3; }
+#result:empty { display: none; }
+.actions { display: flex; flex-wrap: wrap; gap: 10px; justify-content: center; margin: 14px 0; padding: 8px; position: sticky; top: 8px; z-index: 3; border-radius: 12px; background: #17294bf2; }
+#rules, #error-panel { border: 2px solid #a4c7e9; background: #102440; border-radius: 14px; padding: 12px 20px; margin: 14px 0; }
+#rules p { max-width: 65ch; }
+#error-message { white-space: pre-wrap; overflow-wrap: anywhere; }
+.hint { font-size: .85rem; color: #d0e2ef; }
+#rival-picker { text-align: center; }
+#rival-picker label { display: block; margin: 10px; font-weight: 750; }
+#rival-choice { max-width: 100%; width: min(400px, 100%); }
+#rival-picker .hint { margin: 6px 0; }
+.flight-stats { display: flex; justify-content: space-between; font-weight: 750; margin: 10px 0; }
+.sky-wrap { position: relative; overflow: hidden; border: 3px solid #bbdef4; border-radius: 16px; width: min(100%, max(240px, calc((100svh - 360px) * 16 / 9))); margin-inline: auto; }
+#sky { display: block; width: 100%; aspect-ratio: 16 / 9; touch-action: none; cursor: grab; }
+#sky:active { cursor: grabbing; }
+#sky:focus-visible { outline-offset: -5px; }
+#flight-overlay { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 8px; text-align: center; padding: 12px; color: #142d4c; background: #f1f8f8cc; pointer-events: none; }
+#overlay-title { font-size: clamp(1.3rem, 4vw, 2.5rem); }
+#roster-details { margin: 14px 0; background: #0b1b3255; border-radius: 12px; padding: 10px; }
+summary { display: list-item; padding: 10px; }
+#roster { max-height: 280px; overflow: auto; list-style: none; padding: 0; }
+#roster li { display: flex; align-items: center; gap: 12px; padding: 8px; overflow-wrap: anywhere; }
+#roster img { width: 48px; height: 48px; object-fit: contain; background: #fff; border-radius: 8px; }
+.arena { --cell: clamp(44px, 5vw, 52px); display: flex; flex-wrap: wrap; gap: 22px; justify-content: center; align-items: start; }
+.well { width: max-content; max-width: 100%; padding: 10px; border: 2px solid #a6d0ff; border-radius: 16px; background: #122944; }
+#rival-well { border-color: #93ddc7; }
+.actor { display: flex; align-items: center; gap: 12px; width: calc(6 * var(--cell) + 10px); }
+.actor img { width: 82px; height: 82px; object-fit: contain; background: #ffffffee; border-radius: 12px; }
+.actor div { min-width: 0; }
+.actor h2 { overflow-wrap: anywhere; margin: 0 0 5px; }
+.actor span { color: #c0dbe8; }
+.board-score { font-weight: 700; }
+.board-message, .danger-message { width: calc(6 * var(--cell) + 10px); margin: 7px 0; font-size: .85rem; }
+.board-message { min-height: 2.8em; }
+.danger-message { min-height: 1.5em; color: #ffd49c; font-weight: 750; }
+.board, .next-row { display: grid; grid-template-columns: repeat(6, var(--cell)); gap: 2px; background: #09172c; }
+.board { border-top: 3px dashed #b1cee8; }
+.next-row { margin-top: 8px; opacity: .75; }
+.tile { width: var(--cell); height: var(--cell); min-height: var(--cell); min-width: 0; display: grid; place-items: center; padding: 0; border: 2px solid #ffffff70; border-radius: 6px; background: var(--tile-color, #10253c); color: #102139; font: 800 calc(var(--cell) * .55) / 1 "DejaVu Sans", sans-serif; box-shadow: inset 0 3px 0 #ffffff55, inset 0 -3px 0 #0002; }
+.tile[data-kind="0"] { --tile-color: #81c8ff; }
+.tile[data-kind="1"] { --tile-color: #ffb57e; }
+.tile[data-kind="2"] { --tile-color: #ffe582; }
+.tile[data-kind="3"] { --tile-color: #89dfac; }
+.tile[data-kind="4"] { --tile-color: #c5a4ef; }
+.tile[data-kind="empty"] { border-color: #213a54; box-shadow: none; }
+.tile:disabled { opacity: 1; }
+.tile.selected { outline: 3px solid #fff; outline-offset: -4px; box-shadow: inset 0 0 0 5px #203c67; }
+.tile.clearing { background: #fff; color: #203c67; }
+.well.danger { border-color: #ffc187 !important; background: #4e3043; }
+@media (max-width: 360px) {
+  main { width: calc(100% - 12px); }
+  .well { padding: 6px; }
+  .actions { gap: 6px; }
+  button { padding-inline: 10px; }
+}
+@media (orientation: landscape) and (max-height: 600px) {
+  body[data-template="flyer"] .topbar { padding: 4px 12px; }
+  body[data-template="flyer"] main { width: calc(100% - 20px); }
+  body[data-template="flyer"] h1 { font-size: 1.2rem; margin: 2px 0; }
+  body[data-template="flyer"] #instructions, body[data-template="flyer"] #status { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); margin: 0; }
+  body[data-template="flyer"] .actions { position: static; margin: 4px 0; padding: 4px; }
+  body[data-template="flyer"] .actions button { padding: 6px 10px; }
+  body[data-template="flyer"] .sky-wrap, body[data-template="flyer"] .flight-stats { width: min(100%, calc((100svh - 175px) * 16 / 9)); margin: 4px auto; }
+  body[data-template="flyer"] .flight-stats { font-size: .8rem; }
+}
+@media (prefers-reduced-motion: reduce) { *, *::before, *::after { scroll-behavior: auto !important; } }

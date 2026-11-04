@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#3b4cca">
+  <title>Game Creator</title>
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="icon" href="icon.svg">
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="game-creator.css">
+</head>
+<body>
+  <header class="bar"><a class="mid" href="./">Home</a><span id="env-badge" class="env-badge" hidden></span><span class="bar-title">Game Creator</span></header>
+  <main class="creator-main">
+    <section id="library-view">
+      <div class="hero"><p class="eyebrow">Draw it. Build it. Play it.</p><h1>My game workshop</h1><p>Turn photos of your own characters into a flying adventure or a puzzle showdown. Your drawings are the stars.</p><div class="actions"><button id="new-game" class="primary" type="button">Create a game</button><button id="resume-game" type="button" hidden>Back to my draft</button><button id="refresh-library" type="button">Refresh library</button></div></div>
+      <p id="library-notice" role="status" class="notice"></p>
+      <div id="library-grid" class="library-grid"></div>
+    </section>
+    <section id="editor-view" hidden>
+      <div class="editor-heading"><div><p class="eyebrow">Your imagination, your game</p><h1 id="editor-heading">Create a game</h1></div><button id="back-library" type="button">My library</button></div>
+      <p id="draft-status" class="muted" role="status"></p>
+      <form id="editor-form">
+        <fieldset id="editor-fields">
+          <section class="workshop-panel"><h2><span class="step">1</span> Choose your adventure</h2>
+            <label>Game title<input id="game-title" required maxlength="100" autocomplete="off" placeholder="Give your adventure a name"></label>
+            <div class="settings-grid">
+              <label>Game type<select id="game-template"><option value="flyer">Sideways Flyer</option><option value="puzzle">Puzzle Battle</option></select></label>
+              <label>World<select id="game-theme"><option value="sky">Cloudy sky</option><option value="space">Outer space</option><option value="forest">Enchanted forest</option></select></label>
+              <label>Challenge<select id="game-difficulty"><option value="gentle">Gentle</option><option value="normal">Normal</option><option value="lively">Lively</option></select></label>
+              <label id="shots-label">Your shots<select id="game-shots"><option value="bubbles">Bubbles</option><option value="stars">Stars</option></select></label>
+            </div>
+            <p id="template-help" class="tip"></p>
+          </section>
+          <section class="workshop-panel"><h2><span class="step">2</span> Meet your hero</h2><p class="muted">Photograph a drawing, or choose a picture. You decide exactly which part to use.</p><div id="player-slot"></div></section>
+          <section class="workshop-panel"><div class="section-heading"><h2><span class="step">3</span> Add the other characters</h2><button id="add-enemy" type="button">Add a character</button></div><p id="enemy-help" class="muted"></p><div id="enemies-slot" class="actors-grid"></div></section>
+          <div class="save-bar"><button id="preview-game" type="button">Try a preview</button><button id="save-game" class="primary" type="submit">Save game</button><a id="saved-play" class="button" hidden>Play saved game</a></div>
+        </fieldset>
+      </form>
+      <p id="editor-notice" role="status" class="notice"></p>
+      <div id="conflict-panel" class="conflict" hidden><h2>Another version was saved</h2><p>Your changes are still here. Save them as a separate game, or load the latest saved version. Loading the latest replaces this draft only after you agree.</p><div class="actions"><button id="save-copy" type="button">Save my draft as a new game</button><button id="load-latest" type="button">Load latest version</button></div></div>
+    </section>
+  </main>
+  <dialog id="crop-dialog" aria-labelledby="crop-heading">
+    <h2 id="crop-heading">Frame your character</h2><p>Drag a box around your character, or use the pixel controls below. The original photo is always kept for another crop.</p>
+    <fieldset id="crop-fields"><div class="crop-stage"><canvas id="crop-canvas" aria-label="Photo crop area. Drag to select, or use the labeled pixel controls below."></canvas></div>
+      <div class="crop-controls"><label>Left (pixels)<input id="crop-x" type="number" min="0" step="1"></label><label>Top (pixels)<input id="crop-y" type="number" min="0" step="1"></label><label>Width (pixels)<input id="crop-width" type="number" min="1" step="1"></label><label>Height (pixels)<input id="crop-height" type="number" min="1" step="1"></label></div>
+      <div class="actions"><button id="crop-reset" type="button">Reset to full photo</button><label class="checkbox"><input id="remove-white" type="checkbox"> Remove white paper background</label></div><p class="muted">White removal is optional and also removes white inside the character. Turn it off to keep those details.</p>
+      <div class="crop-result"><span>Character preview</span><canvas id="crop-preview" aria-label="Preview of the cropped character"></canvas></div>
+      <div class="actions"><button id="crop-use" class="primary" type="button">Use this picture</button><button id="crop-cancel" type="button">Cancel</button></div>
+    </fieldset><p id="crop-notice" class="notice" role="status"></p>
+  </dialog>
+  <dialog id="preview-dialog" aria-labelledby="preview-heading"><div class="section-heading"><h2 id="preview-heading">Try your game</h2><button id="close-preview" type="button">Close preview</button></div><p class="muted">This is your draft. Close the preview to keep creating, then save when you are ready.</p><div id="preview-frame"></div></dialog>
+  <script type="module" src="game-creator.js"></script>
+</body>
+</html>

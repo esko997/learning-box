@@ -11,6 +11,7 @@ game (the Fakemon card maker, hence the repo's original name) and grew into a sm
 | **Creature Puzzle Battle** | Swap neighboring blocks, make matches and chains, and help Bluewing outlast Starfin on two rising boards |
 | **Ribbon Flight** | Fly a blue ribbon-armed character through an endless stream of little flyers; drag to steer, shoot automatically |
 | **Ribbon Flight 3D** | Fly forward through a low-poly sky, shoot approaching flyers, collect gold rings and dodge rocks |
+| **Game Creator** | Photograph your own hero and rivals, customize a flyer or puzzle battle, and save playable games in a personal library |
 | **Fact Explorer** | A sourced talking fact book: ten discoveries, optional questions and hands-on ideas |
 | **Creature Field Guide** | Invent imaginary wildlife; keep drawings, words and recordings in a personal encyclopedia |
 | **Story Director** | Photograph a written sentence, draw or narrate the next page, and make a storybook |
@@ -139,6 +140,33 @@ Requires **WebGL 2**. Three.js **0.180.0** is bundled locally under `static/vend
 including its MIT license; no CDN, paid calls or saved scores. Device pixel ratio is capped
 at 1.5, meshes are reused, and there are no textures, shadows or postprocessing.
 Desktop browser verification does not establish performance on an older physical tablet.
+
+## Game Creator
+
+Create games from drawings at `/game-creator.html`; play saved games from the library.
+This uses tested game templates, not AI-generated code. Creating and playing makes no paid calls.
+
+1. Pick **Sideways Flyer** or **Puzzle Battle**, then name the game.
+2. Take a photo or choose a picture for the hero and each named enemy/rival.
+   Drag a crop box or adjust its pixel bounds. Optional white-paper removal also removes white
+   inside the character; leave it off when those details matter. **Re-crop original** always
+   returns to the full original photo, not the previous crop.
+3. Choose sky, space or forest, and Gentle, Normal or Lively difficulty.
+   Flyers also choose bubble/star shots and each enemy's straight/weaving/chasing movement and speed.
+4. **Try a preview** plays the current draft without saving it. **Save game** stores the game
+   on the server so the tablet can reopen it later. Save before leaving or reloading the editor.
+5. The library offers **Play**, **Edit**, and **Duplicate**. Editing updates that game;
+   duplicating creates a separate game while retaining the original.
+
+Flyers cycle through the complete enemy roster. Puzzle games let the player choose any one rival
+before each match; they are not campaigns. Puzzle difficulty changes stack-rise timing and the
+computer's speed and match-spotting. Both templates support touch, keyboard, pause and fresh replay.
+Scores and in-progress rounds are not saved; drawings, names and game settings are.
+
+Photos and crops are immutable. If another window saves the same game, the older draft cannot
+overwrite it silently: keep the draft as a separate game or explicitly load the newer version.
+Games live separately from cards and notebooks. The original standalone games remain available.
+Voice helpers, AI-polished artwork, custom 3D games and fighting templates are not included.
 
 ## Play notebooks
 

@@ -5,8 +5,12 @@ const clamp = (value, low, high) => Math.max(low, Math.min(high, value));
 
 // Fixed simulation steps keep movement and collisions independent of display refresh.
 export class RibbonFlight {
-  constructor(random = Math.random) {
+  constructor(random = Math.random, options = {}) {
     this.random = random;
+    this.enemyTypes = options.enemyTypes?.length ? options.enemyTypes : null;
+    this.pacing = options.pacing ?? 1;
+    this.speedScale = options.speedScale ?? 1;
+    this.shotOffsetX = options.shotOffsetX ?? 100;
     this.reset("ready");
   }
 
@@ -56,22 +60,32 @@ export class RibbonFlight {
     this.fireIn -= dt;
     if (this.fireIn <= 0) {
       this.fireIn += 0.24;
-      for (const offset of [-24, 24]) this.shots.push({ x: p.x + 100, y: p.y + offset });
+      for (const offset of [-24, 24]) this.shots.push({ x: p.x + this.shotOffsetX, y: p.y + offset });
     }
     this.spawnIn -= dt;
     if (this.spawnIn <= 0) {
-      this.spawnIn += Math.max(0.55, 1.45 - this.elapsed * 0.004);
-      const kind = Math.floor(this.random() * 3);
+      this.spawnIn += Math.max(0.55, 1.45 - this.elapsed * 0.004) / this.pacing;
+      const kind = this.enemyTypes ? this.spawned % this.enemyTypes.length : Math.floor(this.random() * 3);
+      const type = this.enemyTypes?.[kind];
       const baseY = 70 + this.random() * (HEIGHT - 140);
       this.enemies.push({ x: WIDTH + 34, y: baseY, baseY, age: 0,
-        speed: 105 + Math.min(100, this.elapsed * 0.35) + this.random() * 25,
-        radius: 21 + kind * 2, kind, phase: this.random() * Math.PI * 2 });
+        speed: (105 + Math.min(100, this.elapsed * 0.35) + this.random() * 25) *
+          this.speedScale * (type?.speed ?? 1),
+        radius: this.enemyTypes ? 25 : 21 + kind * 2, kind,
+        behavior: type?.behavior, phase: this.random() * Math.PI * 2 });
       this.spawned += 1;
     }
     for (const enemy of this.enemies) {
       enemy.x -= enemy.speed * dt;
       enemy.age += dt;
-      enemy.y = enemy.baseY + Math.sin(enemy.age * 2 + enemy.phase) * (12 + enemy.kind * 8);
+      if (enemy.behavior === "straight") enemy.y = enemy.baseY;
+      else if (enemy.behavior === "chase") {
+        enemy.y = clamp(enemy.y + clamp(p.y - enemy.y, -enemy.speed * 0.42 * dt,
+          enemy.speed * 0.42 * dt), 40, HEIGHT - 40);
+      } else {
+        enemy.y = enemy.baseY + Math.sin(enemy.age * 2 + enemy.phase) *
+          (enemy.behavior === "weave" ? 42 : 12 + enemy.kind * 8);
+      }
     }
     for (const shot of this.shots) {
       shot.x += 610 * dt;

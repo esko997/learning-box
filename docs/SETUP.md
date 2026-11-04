@@ -12,6 +12,8 @@ For the short version, see the [README](../README.md).
 | `/puzzle-battle.html` | Creature Puzzle Battle: two rising match-three boards, chains and a computer rival; browser-only, no paid calls or saved battles |
 | `/ribbon-flight.html` | Endless horizontal shooter with touch steering and automatic shots; browser-only, no paid calls or saved game data |
 | `/ribbon-flight-3d.html` | Separate forward-flight game with flyers, rings and rocks; requires WebGL 2, no paid calls or saved game data |
+| `/game-creator.html` | Game Creator: photo cropping, flyer/puzzle recipes, previews and saved game library; no paid calls |
+| `/game-player.html?id=…` | Play a saved custom game; touch/keyboard, pause/replay, no saved round progress |
 | `/facts.html` | Sourced facts, ten-discovery sessions, optional follow-ups and reflection |
 | `/creatures.html` | Original drawings and descriptions in a creature field guide |
 | `/stories.html` | Photographed writing, narration, sound effects and printable stories |
@@ -34,6 +36,32 @@ The pinned Three.js 0.180.0 distribution is served from `static/vendor/three/`: 
 `build/three.module.min.js`, `build/three.core.min.js`, and `LICENSE` from the npm `three`
 package. No runtime third-party requests or package installation are needed. To update the
 library, keep both build modules on the same version and retain the accompanying MIT license.
+
+## Game Creator
+
+`fakemon/game_creator.py` serves `/api/game-creator` and owns a separate `games.sqlite`
+plus immutable PNGs in `game-assets/`, both below the configured data directory.
+No card or notebook migration is required. Restart the server when installing this backend.
+
+- Games are version-1 recipes with a template, title, theme, difficulty, shot style, hero
+  and one or more enemies. Enum settings and existing asset IDs are validated; arbitrary code
+  and external artwork URLs are not accepted. Recipes are limited to 256 KiB, not a small fixed
+  number of enemies. Large rosters require more browser image memory.
+- Images are limited to 25 MiB, 40 megapixels and 16384 pixels per side. Raster photos are
+  oriented using EXIF and stored as metadata-free RGBA PNGs; animation uses its first frame.
+  Crops are new assets linked to the full original. The editor bounds crops to 2048px per side.
+  White removal is local and optional, not AI segmentation; it can remove white interior details.
+- Game saves use revisions. Conflicting edits return 409 without changing the saved game.
+  Duplicates have independent IDs and revisions, sharing only immutable images.
+- Preview passes a draft to the same-origin embedded player without creating a game record.
+  Editor drafts remain in page memory and warn before navigation; save before closing the page.
+- The player reuses the original flying and puzzle engines with optional recipe settings.
+  Existing standalone games retain their original defaults. No API key is used by these routes,
+  although the overall app still requires its normal server configuration.
+
+Back up `games.sqlite` with SQLite's backup API (or stop the server first), together with
+the **entire** `game-assets/` directory, including originals and crops. Copying only the game
+database loses the pictures; copying only the pictures loses recipes and original/crop links.
 
 ## Fakemon Cards
 
@@ -217,7 +245,8 @@ loginctl enable-linger "$USER"   # keep running when logged out
 
 Everything lives in `data/` (git-ignored): `cards.sqlite`, `media/<card>/` (drawing, voice
 recording, art), `play.sqlite` (discovery sessions and notebooks), `play-media/` (original
-uploads and companion illustrations), and `certs/`. Back up all of `data/` using a SQLite-aware
+uploads and companion illustrations), `games.sqlite` (Game Creator recipes and asset records),
+`game-assets/` (original photos and crops), and `certs/`. Back up all of `data/` using a SQLite-aware
 backup or while the server is stopped; copying a live SQLite file alone can omit WAL changes.
 Keep `certs/ca.key` private.
 The CA is name-constrained to this machine's hostname, `*.local`, and private-network IPs, so even

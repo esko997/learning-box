@@ -22,6 +22,7 @@ from .ai import ART_FREEDOM, ArtBlocked, CardAI, Spend, normalize_drawing
 from .config import ROOT, load
 from .store import Card, Store
 from .play import register_play
+from .game_creator import register_game_creator
 
 log = logging.getLogger("fakemon")
 
@@ -184,6 +185,8 @@ def create_app() -> FastAPI:
             task.cancel()
         if hasattr(state["app"], "play"):
             state["app"].play.db.close()
+        if hasattr(state["app"], "game_creator"):
+            state["app"].game_creator.db.close()
 
     api = FastAPI(title="Learning Box", lifespan=lifespan)
 
@@ -367,6 +370,7 @@ def create_app() -> FastAPI:
         return FileResponse(path, media_type="application/x-x509-ca-cert", filename="fakemon-ca.crt")
 
     register_play(api, app)
+    register_game_creator(api, app)
 
     api.mount("/", StaticFiles(directory=ROOT / "static", html=True), name="static")
     return api
