@@ -10,6 +10,7 @@ game (the Fakemon card maker, hence the repo's original name) and grew into a sm
 | **Tic-Tac-Toe** | Get three in a row against Random or Tricky Robo, or play with two humans on the same tablet |
 | **Creature Puzzle Battle** | Swap neighboring blocks, make matches and chains, and help Bluewing outlast Starfin on two rising boards |
 | **Ribbon Flight** | Fly a blue ribbon-armed character through an endless stream of little flyers; drag to steer, shoot automatically |
+| **Ribbon Flight 3D** | Fly forward through a low-poly sky, shoot approaching flyers, collect gold rings and dodge rocks |
 | **Fact Explorer** | A sourced talking fact book: ten discoveries, optional questions and hands-on ideas |
 | **Creature Field Guide** | Invent imaginary wildlife; keep drawings, words and recordings in a personal encyclopedia |
 | **Story Director** | Photograph a written sentence, draw or narrate the next page, and make a storybook |
@@ -117,6 +118,27 @@ Spawn frequency and speed gradually increase, then stop increasing; there is no 
   particles; gameplay movement remains. Landscape gives the widest view on a tablet.
 
 Runs entirely in the browser, with no paid calls, saved scores, or card collection changes.
+
+## Ribbon Flight 3D
+
+A separate forward-flight game; the original sideways Ribbon Flight stays available unchanged.
+The camera follows the action from behind the player's flight plane, with a low-poly blue
+character and red/navy ribbon arms over a scrolling river and hills.
+
+- Drag anywhere in the sky to steer, or use arrows/WASD after focusing the playfield.
+  Forward flight and twin shots are automatic. The aim guide shows the forward firing line.
+- Flyers score 10 points; passing through the center of a gold ring scores 25.
+  Rocks absorb shots and must be dodged. Missed rings and flyers cost no hearts.
+- Three hits end a flight, with two seconds of protection after each hit.
+  Difficulty increases for three minutes, then stays capped; spawning continues indefinitely.
+- Pause/resume, spoken rules, fresh replay, focus/navigation pausing and reduced decorative
+  motion work as in the original game. Lost graphics contexts pause the flight; after recovery,
+  resume explicitly. Unsupported browsers get an explanation and a link to the original.
+
+Requires **WebGL 2**. Three.js **0.180.0** is bundled locally under `static/vendor/three/`,
+including its MIT license; no CDN, paid calls or saved scores. Device pixel ratio is capped
+at 1.5, meshes are reused, and there are no textures, shadows or postprocessing.
+Desktop browser verification does not establish performance on an older physical tablet.
 
 ## Play notebooks
 

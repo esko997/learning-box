@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#3b4cca">
+  <title>Ribbon Flight 3D</title>
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="icon" href="icon.svg">
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="ribbon-flight.css">
+  <link rel="stylesheet" href="ribbon-flight-3d.css">
+</head>
+<body>
+  <header class="bar">
+    <a class="mid" href="./">All games</a>
+    <span id="env-badge" class="env-badge" hidden></span>
+    <button class="mid" id="rules-btn" type="button">Hear rules</button>
+  </header>
+  <main class="flight-game flight-3d">
+    <h1 class="logo">Ribbon Flight 3D</h1>
+    <p class="instructions" id="instructions">Fly into the sky! Drag to steer, aim at flyers, glide through gold rings, and dodge the rocks. Shooting is automatic.</p>
+    <div class="flight-toolbar">
+      <div class="flight-stats"><span id="hearts" aria-label="3 hearts left">♥ ♥ ♥</span><span>Score <strong id="score">0</strong></span><span>Rings <strong id="rings">0</strong></span></div>
+      <div class="flight-actions">
+        <button class="mid primary" id="start" type="button" disabled>Start flying</button>
+        <button class="mid" id="pause" type="button" disabled>Pause</button>
+      </div>
+    </div>
+    <div class="sky-wrap">
+      <canvas id="sky" width="960" height="540" tabindex="0" role="img" aria-label="Three-dimensional flight playfield" aria-describedby="instructions keyboard-help">This game needs WebGL 2 graphics support.</canvas>
+      <div id="overlay" class="flight-overlay"><strong id="overlay-title">Opening the sky…</strong><span id="overlay-detail">Loading local 3D graphics.</span></div>
+    </div>
+    <p id="flight-status" role="status" aria-live="polite" aria-atomic="true">Loading 3D graphics.</p>
+    <div id="graphics-help" class="graphics-help" hidden>
+      <p id="graphics-message"></p>
+      <button class="mid" id="reload" type="button">Reload 3D game</button>
+      <a class="mid" href="ribbon-flight.html">Play original Ribbon Flight</a>
+    </div>
+    <p class="help" id="keyboard-help">Drag anywhere in the sky, or click the sky and use arrows / WASD. P pauses.
+      Follow your aim guide to line up shots and rings. You have three hearts and a short shield after a bump.
+      Rocks cannot be shot away. Missed rings and flyers do not cost hearts. Turn the tablet sideways for more room.</p>
+    <p class="original-link"><a href="ribbon-flight.html">Prefer sideways flying? Play the original Ribbon Flight.</a></p>
+    <noscript><p>Enable JavaScript to play. The original game also needs JavaScript.</p></noscript>
+  </main>
+  <script type="module" src="ribbon-flight-3d.js"></script>
+</body>
+</html>

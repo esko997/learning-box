@@ -11,6 +11,7 @@ For the short version, see the [README](../README.md).
 | `/tic-tac-toe.html` | Tic-Tac-Toe against Random or Tricky Robo, or two humans on the same tablet; browser-only, no paid calls or saved game data |
 | `/puzzle-battle.html` | Creature Puzzle Battle: two rising match-three boards, chains and a computer rival; browser-only, no paid calls or saved battles |
 | `/ribbon-flight.html` | Endless horizontal shooter with touch steering and automatic shots; browser-only, no paid calls or saved game data |
+| `/ribbon-flight-3d.html` | Separate forward-flight game with flyers, rings and rocks; requires WebGL 2, no paid calls or saved game data |
 | `/facts.html` | Sourced facts, ten-discovery sessions, optional follow-ups and reflection |
 | `/creatures.html` | Original drawings and descriptions in a creature field guide |
 | `/stories.html` | Photographed writing, narration, sound effects and printable stories |
@@ -21,6 +22,18 @@ worktree on another branch), its own copy of `data/`, `PORT=8444 ./run.sh`, and
 `FAKEMON_ENV=dev` in its `.env`, which shows a striped DEV badge so the two can't be confused.
 Both share the OpenAI key; give the dev `.env` a small `MONTHLY_BUDGET_USD`, since each
 instance's budget guard only counts its own spending.
+
+## 3D flight graphics
+
+Ribbon Flight 3D requires a browser/device with WebGL 2 enabled. If the sky cannot render,
+the page disables play and offers reload plus a link to the original 2D Ribbon Flight.
+Graphics interruption pauses the flight; successful restoration does not resume it automatically.
+Check steering and smoothness on the actual tablet in landscape before relying on it there.
+
+The pinned Three.js 0.180.0 distribution is served from `static/vendor/three/`: unmodified
+`build/three.module.min.js`, `build/three.core.min.js`, and `LICENSE` from the npm `three`
+package. No runtime third-party requests or package installation are needed. To update the
+library, keep both build modules on the same version and retain the accompanying MIT license.
 
 ## Fakemon Cards
 
